@@ -20,5 +20,11 @@ class UserManagementTests(unittest.TestCase):
         response = self.test_client.delete('/users/2')  
         self.assertIn(response.status_code, [204, 404])
 
+    def test_view_user(self):
+        response = self.test_client.get('/users/2')  
+        self.assertIn(response.status_code, [200, 404])
+
+
+
 if __name__ == '__main__':
     unittest.main()
