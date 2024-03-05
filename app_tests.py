@@ -16,6 +16,11 @@ class UserManagementTests(unittest.TestCase):
         response = self.test_client.post('/users', json=new_user)
         self.assertEqual(response.status_code, 201)
 
+    def test_update_user(self):
+        user_update = {'firstName': 'Jane'}
+        response = self.test_client.patch('/users/2', json=user_update)  
+        self.assertIn(response.status_code, [200, 404])
+
     def test_delete_user(self):
         response = self.test_client.delete('/users/2')  
         self.assertIn(response.status_code, [204, 404])
